@@ -1,6 +1,7 @@
 import json
 import requests
 
+
 from .utils import is_different_car_object, generate_car_image_dir
 
 
@@ -38,3 +39,7 @@ class FetchAPI:
                                 )
 
         return car_list
+
+
+
+
