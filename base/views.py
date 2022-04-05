@@ -12,8 +12,4 @@ def index(request):
     context = {
         'cars': responded_API_object.get_carlist(),
     }
-    import os
-    from pathlib import Path
-    BASE_DIR = Path(__file__).resolve().parent.parent
-    print(os.path.join(BASE_DIR, 'templates'))
     return render(request, "pages/index.html", context)
