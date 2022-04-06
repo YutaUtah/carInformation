@@ -29,16 +29,20 @@ class FetchAPI:
         return json.loads(response.text[11:-3])
 
 
-    def get_carlist(self):
+    def get_carlist(self, car_model=None):
         car_list = []
         for each_car_info in self.__fetched_API:
             if is_different_car_object(each_car_info, car_list):
-                car_list.append(Car(each_car_info['model_make_id'],
-                                    each_car_info['model_name'],
-                                    generate_car_image_dir(each_car_info))
-                                )
+                obtained_car_object = Car(
+                                        each_car_info['model_make_id'],
+                                        each_car_info['model_name'],
+                                        generate_car_image_dir(each_car_info)
+                                      )
+                if car_model is None or obtained_car_object.maker.lower() == car_model.lower():
+                    car_list.append(obtained_car_object)
 
         return car_list
+
 
 
 
