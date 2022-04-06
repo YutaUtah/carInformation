@@ -25,6 +25,7 @@ class FetchAPI:
 
     @property
     def __fetched_API(self):
+        # request API and convert it to json schema
         response = requests.get(self.requested_url, headers=self.headers)
         return json.loads(response.text[11:-3])
 
@@ -32,12 +33,15 @@ class FetchAPI:
     def get_carlist(self, car_model=None):
         car_list = []
         for each_car_info in self.__fetched_API:
+            # remove duplicated car object using is_different_car_object
+            # create Car class with appropriate variables
             if is_different_car_object(each_car_info, car_list):
                 obtained_car_object = Car(
                                         each_car_info['model_make_id'],
                                         each_car_info['model_name'],
                                         generate_car_image_dir(each_car_info)
                                       )
+                # store car object to car_list
                 if car_model is None or obtained_car_object.maker.lower() == car_model.lower():
                     car_list.append(obtained_car_object)
 

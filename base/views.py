@@ -13,9 +13,10 @@ def index(request):
     responded_API_object = FetchAPI(RequestConfig.REQUEST_URL.value, RequestConfig.HEADERS.value)
     context = {
         'cars_list': responded_API_object.get_carlist(),
+        # cars_set to remove the duplicated car maker
         'cars_set': set(car.maker for car in responded_API_object.get_carlist()),
     }
-    print(set(car.maker for car in responded_API_object.get_carlist()))
+    # print(set(car.maker for car in responded_API_object.get_carlist()))
     return render(request, "pages/index.html", context)
 
 
@@ -37,7 +38,8 @@ def get_model_list(request, car_model):
 
     context = {
         'cars': car_model_list,
-        'car_name': car_model_list[0].maker,
+        # one car maker/car image to many car model
+        'car_maker': car_model_list[0].maker,
         'car_img_jpg': CarMap.CAR_TO_IMG[car_model_list[0].maker]
     }
     return render(request, "pages/modelList.html", context)
