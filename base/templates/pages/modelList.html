@@ -1,5 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
 
+
 {% block modelList %}
+<div class="">
+    <div class="justify-content-center">
+        <img src="{% static 'img/'|add:car_img_jpg %}" class="rounded mx-auto d-block" alt="{{ car.maker }}">
+    </div>
+
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th class="text-center" scope="col">Car Name</th>
+      <th class="text-center" scope="col">Car Model</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for car in cars %}
+    <tr>
+      <td class="text-center">{{ car.maker }}</td>
+      <td class="text-center">{{ car.model }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}
