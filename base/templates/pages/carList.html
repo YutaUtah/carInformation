@@ -5,9 +5,12 @@
 {% block carList %}
 <div class="row">
     <h1 class="container text-center mt-5 mb-5">Car Warehouse</h1>
-    {% for car in files %}
+    {% for car, car_img in files.items %}
     <div class="col-4 col-xl-4 text-center mt-2 mb-2 border">
-        <img src="{% static 'img/'|add:car %}" alt="{{ car }}">
+<a href="{% url 'base:modelList' car %}">
+    <img src="{% static 'img/'|add:car_img %}" alt="{{ car }}">
+</a>
+
     </div>
     {% endfor %}
 </div>
