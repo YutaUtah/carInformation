@@ -1,5 +1,6 @@
 *.pyc
 
+.vscode
 .idea
 testProject/__pycache__
 mysite/__pycache__
