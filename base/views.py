@@ -11,6 +11,7 @@ from .fetch import FetchAPI
 # Create your views here.
 def index(request):
     responded_API_object = FetchAPI(RequestConfig.REQUEST_URL.value, RequestConfig.HEADERS.value)
+
     context = {
         'cars_list': responded_API_object.get_carlist(),
         # cars_set to remove the duplicated car maker
