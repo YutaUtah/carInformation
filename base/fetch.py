@@ -46,8 +46,3 @@ class FetchAPI:
                     car_list.append(obtained_car_object)
 
         return car_list
-
-
-
-
-

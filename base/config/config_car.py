@@ -13,4 +13,3 @@ class CarMap:
         'Audi': "audi.jpg",
         'BMW': "bmw.jpg"
     }
-

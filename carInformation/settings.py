@@ -79,11 +79,14 @@ WSGI_APPLICATION = 'carInformation.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.getenv('CAR_DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASS'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -109,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Japan'
 
 USE_I18N = True
 
@@ -121,6 +124,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# 各アプリケーションのstatic以外に配信するディレクトリがある場合に追加する。
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]

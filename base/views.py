@@ -10,14 +10,16 @@ from .fetch import FetchAPI
 
 # Create your views here.
 def index(request):
-    responded_API_object = FetchAPI(RequestConfig.REQUEST_URL.value, RequestConfig.HEADERS.value)
+    request_url = RequestConfig.REQUEST_URL.value
+    header_value = RequestConfig.HEADERS.value
+    responded_api_object = FetchAPI(request_url, header_value)
 
     context = {
-        'cars_list': responded_API_object.get_carlist(),
+        'cars_list': responded_api_object.get_carlist(),
         # cars_set to remove the duplicated car maker
-        'cars_set': set(car.maker for car in responded_API_object.get_carlist()),
+        'cars_set': set(car.maker for car in responded_api_object.get_carlist()),
     }
-    # print(set(car.maker for car in responded_API_object.get_carlist()))
+    # print(set(car.maker for car in responded_api_object.get_carlist()))
     return render(request, "pages/index.html", context)
 
 
@@ -34,8 +36,10 @@ def get_car_image(request):
 
 
 def get_model_list(request, car_model):
-    responded_API_object = FetchAPI(RequestConfig.REQUEST_URL.value, RequestConfig.HEADERS.value)
-    car_model_list = responded_API_object.get_carlist(car_model)
+    request_url = RequestConfig.REQUEST_URL.value
+    header_value = RequestConfig.HEADERS.value
+    responded_api_object = FetchAPI(request_url, header_value)
+    car_model_list = responded_api_object.get_carlist(car_model)
 
     context = {
         'cars': car_model_list,
