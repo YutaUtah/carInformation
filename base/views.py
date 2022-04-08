@@ -1,14 +1,15 @@
 import os
 
 from django.shortcuts import render
-from django.http import HttpRequest, HttpResponse
+from django.views.decorators.http import require_GET
 
-from .config.config_request import RequestConfig
 from .config.config_car import CarMap
+from .config.config_request import RequestConfig
 from .fetch import FetchAPI
 
 
 # Create your views here.
+@require_GET
 def index(request):
     request_url = RequestConfig.REQUEST_URL.value
     header_value = RequestConfig.HEADERS.value
@@ -23,6 +24,7 @@ def index(request):
     return render(request, "pages/index.html", context)
 
 
+@require_GET
 def get_car_image(request):
     name_to_img_dict = {}
     file_list = [filename for filename in os.listdir(CarMap.CAR_IMG_DIR) if not filename.startswith('.')]
@@ -35,6 +37,7 @@ def get_car_image(request):
     return render(request, "pages/carList.html", context)
 
 
+@require_GET
 def get_model_list(request, car_model):
     request_url = RequestConfig.REQUEST_URL.value
     header_value = RequestConfig.HEADERS.value
