@@ -1,7 +1,6 @@
 import json
 import requests
 
-
 from .utils import is_different_car_object, generate_car_image_dir
 
 
@@ -24,7 +23,7 @@ class FetchAPI:
 
 
     @property
-    def __fetched_API(self):
+    def _fetched_API(self):
         # request API and convert it to json schema
         response = requests.get(self.requested_url, headers=self.headers)
         return json.loads(response.text[11:-3])
@@ -32,7 +31,7 @@ class FetchAPI:
 
     def get_carlist(self, car_model=None):
         car_list = []
-        for each_car_info in self.__fetched_API:
+        for each_car_info in self._fetched_API:
             # remove duplicated car object using is_different_car_object
             # create Car class with appropriate variables
             if is_different_car_object(each_car_info, car_list):
